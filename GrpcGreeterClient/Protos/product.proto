@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcGreeterClient";
+
+package product;
+
+// The greeting service definition.
+service Product {
+	rpc GetProductsInformation (GetProductDetail) returns (ProductModel);
+	rpc GetProducts (GetProductsRequest) returns (stream ProductModel);
+	rpc GetProductList (GetProductsRequest) returns (ProductListModel);
+}
+
+// The request message containing the user's name.
+message GetProductDetail {
+	int32 productId = 1;
+}
+
+// The response message containing the greetings.
+message ProductModel{
+	string productName = 1;
+	string productDescription = 2;
+	int32 productPrice = 3;
+	int32 productStock = 4;
+}
+
+message GetProductsRequest {
+	
+}
+
+message ProductListModel {
+	repeated ProductModel product = 1;
+}
